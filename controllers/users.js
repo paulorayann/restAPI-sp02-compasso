@@ -1,8 +1,12 @@
+const Users = require('../models/users')
+
 module.exports = app => {
     app.get('/users', (req, res) => res.send('GET request in the "Users" route'))
 
     app.post('/users', (req, res) => {
-        console.log(req.body)
+        const users = req.body
+
+        Users.create(users)
         res.send('POST request in the "Users" route')})
 
 }
