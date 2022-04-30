@@ -6,7 +6,8 @@ module.exports = app => {
     app.post('/users', (req, res) => {
         const users = req.body
 
-        Users.create(users)
-        res.send('POST request in the "Users" route')})
+        Users.create(users, res)
+
+    })
 
 }
