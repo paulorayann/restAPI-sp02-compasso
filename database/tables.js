@@ -12,7 +12,7 @@ class Tables {
         CREATE TABLE IF NOT EXISTS Users (
         id int NOT NULL AUTO_INCREMENT,
         name varchar(70) NOT NULL,
-        cpf varchar(11) NOT NULL,
+        cpf varchar(15) NOT NULL,
         birthDate DATE NOT NULL,
         email varchar(50) NOT NULL,
         password varchar(30) NOT NULL,
@@ -22,7 +22,7 @@ class Tables {
         city varchar(50) NOT NULL,
         state varchar(25) NOT NULL,
         country varchar(55) NOT NULL,
-        zipCode varchar(8) NOT NULL,
+        zipCode varchar(11) NOT NULL,
         PRIMARY KEY (id))
         `
 
