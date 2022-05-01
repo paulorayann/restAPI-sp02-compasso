@@ -81,6 +81,42 @@ class Users {
         })
     //End of Read by ID Method
     }
+
+    //Update Method
+
+    //PUT
+    updatePut(id, values, res) {
+        if(values.birthDate) {
+            values.birthDate = moment(values.birthDate, 'DD/MM/YYYY').format('YYYY-MM-DD')
+        }
+
+        const sql = 'UPDATE Users SET ? WHERE id=?'
+
+        connection.query(sql, [values, id], (err, outcome) => {
+            if(err) {
+                res.status(404).json(err)
+            } else {
+                res.status(200).json(outcome)
+            }
+        })
+    }
+
+    //PATCH
+    updatePatch(id, values, res) {
+        if(values.birthDate) {
+            values.birthDate = moment(values.birthDate, 'DD/MM/YYYY').format('YYYY-MM-DD')
+        }
+
+        const sql = 'UPDATE Users SET ? WHERE id= ? '
+
+        connection.query(sql, [values, id], (err, outcome) => {
+            if(err) {
+                res.status(404).json(err)
+            } else {
+                res.status(200).json(outcome)
+            }
+        })
+    }
     
 }
 
