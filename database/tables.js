@@ -3,8 +3,10 @@ class Tables {
         this.connection = connection
 
         this.createUser()
+        this.createTasks()
     }
 
+    //Creation of Users
     createUser() {
         const sql = ` 
         CREATE TABLE IF NOT EXISTS Users (
@@ -30,11 +32,27 @@ class Tables {
             } else {
                 console.log('Users table succesfully created')
             }
-
         })
-
-        
     }
+
+    //Creation of Tasks Table
+    createTasks() {
+        const sql = `
+        CREATE TABLE IF NOT EXISTS Tasks ( 
+        description varchar(200) NOT NULL,
+        date DATETIME NOT NULL, 
+        id int,
+        CONSTRAINT fk_UserTask FOREIGN KEY (id) REFERENCES Users (id))
+        `
+        this.connection.query( sql, err => {
+            if(err) {
+                console.log(err)
+            } else {
+                console.log('Tasks table succesfully created')
+            }
+        })
+    }
+    
 }
 
 module.exports = new Tables
