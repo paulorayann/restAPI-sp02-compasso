@@ -28,13 +28,19 @@ module.exports = app => {
 
         Users.updatePut(id, values, res)
     })
-    
+
     //PATCH Method
     app.patch('/api/v1/user/:id', (req, res) => {
         const id = parseInt(req.params.id)
         const values = req.body
 
         Users.updatePatch(id, values, res)
+    })
+
+    app.delete('/api/v1/user/:id', (req, res) => {
+        const id = parseInt(req.params.id)
+
+        Users.deletes(id, res)
     })
 
 }

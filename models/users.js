@@ -40,7 +40,7 @@ class Users {
                 if(err) {
                     res.status(400).json(err)
                 } else {
-                    res.status(201).json(outcome)
+                    res.status(201).json(users)
                 }
             })
 
@@ -96,7 +96,7 @@ class Users {
             if(err) {
                 res.status(404).json(err)
             } else {
-                res.status(200).json(outcome)
+                res.status(201).json({...outcome, id})
             }
         })
     }
@@ -113,7 +113,20 @@ class Users {
             if(err) {
                 res.status(404).json(err)
             } else {
-                res.status(200).json(outcome)
+                res.status(200).json({...outcome, id})
+            }
+        })
+    }
+
+    deletes(id, res) {
+        const sql = 'DELETE FROM Users WHERE id=?'
+
+        connection.query(sql, id, (err, outcome) => {
+            if(err) {
+                res.status(404).json(err)
+            } else {
+                res.status(200).json(`The user with id: ${id} was deleted successfully`)
+
             }
         })
     }
