@@ -96,7 +96,7 @@ class Users {
             if(err) {
                 res.status(404).json(err)
             } else {
-                res.status(201).json({...outcome, id})
+                res.status(201).json({...values, id}) 
             }
         })
     }
@@ -113,7 +113,7 @@ class Users {
             if(err) {
                 res.status(404).json(err)
             } else {
-                res.status(200).json({...outcome, id})
+                res.status(200).json({...values, id}) 
             }
         })
     }
@@ -125,7 +125,7 @@ class Users {
             if(err) {
                 res.status(404).json(err)
             } else {
-                res.status(200).json(`The user with id: ${id} was deleted successfully`)
+                res.status(200).json(`The user with id: ${id} has been deleted successfully`)
 
             }
         })
