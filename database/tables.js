@@ -41,8 +41,8 @@ class Tables {
         CREATE TABLE IF NOT EXISTS Tasks ( 
         description varchar(200) NOT NULL,
         date DATETIME NOT NULL, 
-        id int,
-        CONSTRAINT fk_UserTask FOREIGN KEY (id) REFERENCES Users (id))
+        user int,
+        CONSTRAINT fk_UserTask FOREIGN KEY (user) REFERENCES Users (id))
         `
         this.connection.query( sql, err => {
             if(err) {
