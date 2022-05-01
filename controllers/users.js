@@ -7,7 +7,7 @@ module.exports = app => {
         Users.read(res)
 
     })
-    //GET by ID
+    //GET by ID Method
     app.get('/api/v1/user/:id', (req, res) => {
         const id = parseInt(req.params.id)
 
@@ -15,7 +15,7 @@ module.exports = app => {
     })
 
 
-
+    //POST Method
     app.post('/api/v1/user', (req, res) => {
         const users = req.body
 

@@ -4,6 +4,7 @@ const connection = require('../database/connection')
 
 
 class Users {
+
     //Create Method
     create(users, res) {
         const birthDate = moment(users.birthDate, 'DD/MM/YYYY').format('YYYY-MM-DD')
@@ -46,8 +47,8 @@ class Users {
         }
 
 
-
-    } //End of Create Method
+    //End of Create Method
+    } 
 
     //Read Method
     read(res) {
@@ -62,8 +63,10 @@ class Users {
 
         })
 
+        //End of Read Method
     }
 
+    //Read by Id Method
     readById(id, res) {
         const sql = `SELECT * FROM Users WHERE id=${id}`
     
@@ -76,6 +79,7 @@ class Users {
             }
 
         })
+    //End of Read by ID Method
     }
     
 }
