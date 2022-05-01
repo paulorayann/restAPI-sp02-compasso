@@ -36,7 +36,7 @@ class Users {
 
             const sql = 'INSERT INTO Users SET ?'
 
-            connection.query(sql, bDate, (err, outcome) => {
+            connection.query(sql, bDate, (err, results) => {
                 if(err) {
                     res.status(400).json(err)
                 } else {
@@ -54,11 +54,11 @@ class Users {
     read(res) {
         const sql = 'SELECT * FROM Users'
 
-        connection.query(sql, (err, outcome) => {
+        connection.query(sql, (err, results) => {
             if(err) {
                 res.status(404).json(err)
             } else {
-                res.status(200).json(outcome)
+                res.status(200).json(results)
             }
 
         })
@@ -70,8 +70,8 @@ class Users {
     readById(id, res) {
         const sql = `SELECT * FROM Users WHERE id=${id}`
     
-        connection.query(sql, (err, outcome) => {
-            const user = outcome[0]
+        connection.query(sql, (err, results) => {
+            const user = results[0]
             if(err) {
                 res.status(404).json(err)
             } else {
@@ -92,7 +92,7 @@ class Users {
 
         const sql = 'UPDATE Users SET ? WHERE id=?'
 
-        connection.query(sql, [values, id], (err, outcome) => {
+        connection.query(sql, [values, id], (err, results) => {
             if(err) {
                 res.status(404).json(err)
             } else {
@@ -109,7 +109,7 @@ class Users {
 
         const sql = 'UPDATE Users SET ? WHERE id= ? '
 
-        connection.query(sql, [values, id], (err, outcome) => {
+        connection.query(sql, [values, id], (err, results) => {
             if(err) {
                 res.status(404).json(err)
             } else {
@@ -121,7 +121,7 @@ class Users {
     deletes(id, res) {
         const sql = 'DELETE FROM Users WHERE id=?'
 
-        connection.query(sql, id, (err, outcome) => {
+        connection.query(sql, id, (err, results) => {
             if(err) {
                 res.status(404).json(err)
             } else {
