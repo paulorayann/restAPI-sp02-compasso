@@ -8,10 +8,10 @@ module.exports = app => {
     })
 
     //GET by ID Method
-    app.get('/api/v1/task/:user', (req, res) => {
-        const user = parseInt(req.params.user)
+    app.get('/api/v1/task/:id', (req, res) => {
+        const id = parseInt(req.params.id)
 
-        Tasks.readById(user, res)
+        Tasks.readById(id, res)
     })
 
     //POST Method

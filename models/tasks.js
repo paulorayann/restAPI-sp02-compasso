@@ -92,7 +92,7 @@ class Tasks {
     //PUT
     updatePut(id, values, res) {
         if(values.date) {
-            values.date = moment(values.date, 'DD/MM/YYYY').format('YYYY-MM-DD HH:mm:ss')
+            values.date = moment(values.date, 'DD/MM/YYYY HH:mm:ss').format('YYYY-MM-DD HH:mm:ss')
         }
 
         const sql = 'UPDATE Tasks SET ? WHERE user=?'
@@ -108,7 +108,7 @@ class Tasks {
     //PATCH
     updatePatch(id, values, res) {
         if(values.date) {
-            values.date = moment(values.date, 'DD/MM/YYYY').format('YYYY-MM-DD HH:mm:ss')
+            values.date = moment(values.date, 'DD/MM/YYYY HH:mm:ss').format('YYYY-MM-DD HH:mm:ss')
         }
 
         const sql = 'UPDATE Tasks SET ? WHERE user= ? '
