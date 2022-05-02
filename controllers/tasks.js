@@ -1,47 +1,45 @@
-const Tasks = require('../models/tasks')
+const Tasks = require("../models/tasks");
 
-module.exports = app => {
+module.exports = (app) => {
+  //GET Method
+  app.get("/api/v1/task", (req, res) => {
+    Tasks.read(res);
+  });
 
-    //GET Method
-    app.get('/api/v1/task', (req, res) =>  {
-        Tasks.read(res)
-    })
+  //GET by ID Method
+  app.get("/api/v1/task/:id", (req, res) => {
+    const id = parseInt(req.params.id);
 
-    //GET by ID Method
-    app.get('/api/v1/task/:id', (req, res) => {
-        const id = parseInt(req.params.id)
+    Tasks.readById(id, res);
+  });
 
-        Tasks.readById(id, res)
-    })
+  //POST Method
+  app.post("/api/v1/task", (req, res) => {
+    const tasks = req.body;
 
-    //POST Method
-    app.post('/api/v1/task', (req, res) => {
-        const tasks = req.body
+    Tasks.create(tasks, res);
+  });
 
-        Tasks.create(tasks, res)
-    })
+  //PUT Method
+  app.put("/api/v1/task/:id", (req, res) => {
+    const id = parseInt(req.params.id);
+    const values = req.body;
 
-    //PUT Method
-    app.put('/api/v1/task/:id', (req, res) => {
-        const id = parseInt(req.params.id)
-        const values = req.body
+    Tasks.updatePut(id, values, res);
+  });
 
-        Tasks.updatePut(id, values, res)
-    })
+  //PATCH Method
+  app.patch("/api/v1/task/:id", (req, res) => {
+    const id = parseInt(req.params.id);
+    const values = req.body;
 
-    //PATCH Method
-    app.patch('/api/v1/task/:id', (req, res) => {
-        const id = parseInt(req.params.id)
-        const values = req.body
+    Tasks.updatePatch(id, values, res);
+  });
 
-        Tasks.updatePatch(id, values, res)
-    })
-    
-    //DELETE Method
-    app.delete('/api/v1/task/:id', (req, res) => {
-        const id = parseInt(req.params.id)
+  //DELETE Method
+  app.delete("/api/v1/task/:id", (req, res) => {
+    const id = parseInt(req.params.id);
 
-        Tasks.deletes(id, res)
-    })
-
-  }
+    Tasks.deletes(id, res);
+  });
+};

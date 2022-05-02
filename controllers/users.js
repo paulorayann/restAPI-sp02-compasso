@@ -1,47 +1,45 @@
-const Users = require('../models/users')
+const Users = require("../models/users");
 
-module.exports = app => {
+module.exports = (app) => {
+  //GET Method
+  app.get("/api/v1/user", (req, res) => {
+    Users.read(res);
+  });
 
-    //GET Method
-    app.get('/api/v1/user', (req, res) =>  {
-        Users.read(res)
-    })
+  //GET by ID Method
+  app.get("/api/v1/user/:id", (req, res) => {
+    const id = parseInt(req.params.id);
 
-    //GET by ID Method
-    app.get('/api/v1/user/:id', (req, res) => {
-        const id = parseInt(req.params.id)
+    Users.readById(id, res);
+  });
 
-        Users.readById(id, res)
-    })
+  //POST Method
+  app.post("/api/v1/user", (req, res) => {
+    const users = req.body;
 
-    //POST Method
-    app.post('/api/v1/user', (req, res) => {
-        const users = req.body
+    Users.create(users, res);
+  });
 
-        Users.create(users, res)
-    })
+  //PUT Method
+  app.put("/api/v1/user/:id", (req, res) => {
+    const id = parseInt(req.params.id);
+    const values = req.body;
 
-    //PUT Method
-    app.put('/api/v1/user/:id', (req, res) => {
-        const id = parseInt(req.params.id)
-        const values = req.body
+    Users.updatePut(id, values, res);
+  });
 
-        Users.updatePut(id, values, res)
-    })
+  //PATCH Method
+  app.patch("/api/v1/user/:id", (req, res) => {
+    const id = parseInt(req.params.id);
+    const values = req.body;
 
-    //PATCH Method
-    app.patch('/api/v1/user/:id', (req, res) => {
-        const id = parseInt(req.params.id)
-        const values = req.body
+    Users.updatePatch(id, values, res);
+  });
 
-        Users.updatePatch(id, values, res)
-    })
+  //DELETE Method
+  app.delete("/api/v1/user/:id", (req, res) => {
+    const id = parseInt(req.params.id);
 
-    //DELETE Method
-    app.delete('/api/v1/user/:id', (req, res) => {
-        const id = parseInt(req.params.id)
-
-        Users.deletes(id, res)
-    })
-
-}
+    Users.deletes(id, res);
+  });
+};

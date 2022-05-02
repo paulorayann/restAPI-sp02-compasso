@@ -1,14 +1,14 @@
 class Tables {
-    init(connection) {
-        this.connection = connection
+  init(connection) {
+    this.connection = connection;
 
-        this.createUser()
-        this.createTasks()
-    }
+    this.createUser();
+    this.createTasks();
+  }
 
-    //Creation of Users Table
-    createUser() {
-        const sql = ` 
+  //Creation of Users Table
+  createUser() {
+    const sql = ` 
         CREATE TABLE IF NOT EXISTS Users (
         id int NOT NULL AUTO_INCREMENT,
         name varchar(70) NOT NULL,
@@ -24,35 +24,34 @@ class Tables {
         country varchar(55) NOT NULL,
         zipCode varchar(11) NOT NULL,
         PRIMARY KEY (id))
-        `
+        `;
 
-        this.connection.query( sql, err => {
-            if(err) {
-                console.log(err)
-            } else {
-                console.log('Users table succesfully created')
-            }
-        })
-    }
+    this.connection.query(sql, (err) => {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log("Users table succesfully created");
+      }
+    });
+  }
 
-    //Creation of Tasks Table
-    createTasks() {
-        const sql = `
+  //Creation of Tasks Table
+  createTasks() {
+    const sql = `
         CREATE TABLE IF NOT EXISTS Tasks (
         description varchar(200) NOT NULL,
         date DATETIME NOT NULL, 
         user int,
         CONSTRAINT fk_UserTask FOREIGN KEY (user) REFERENCES Users (id))
-        `
-        this.connection.query( sql, err => {
-            if(err) {
-                console.log(err)
-            } else {
-                console.log('Tasks table succesfully created')
-            }
-        })
-    }
-    
+        `;
+    this.connection.query(sql, (err) => {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log("Tasks table succesfully created");
+      }
+    });
+  }
 }
 
-module.exports = new Tables
+module.exports = new Tables();
