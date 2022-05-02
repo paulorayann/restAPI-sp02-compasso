@@ -70,7 +70,7 @@ class Tasks {
 
     connection.query(sql, (err, results) => {
       const tasks = results[0];
-      if (err) {
+      if (results.affectedRows == 0 && err === null) {
         res.status(404).json(err);
       } else {
         res.status(200).json(tasks);
@@ -92,8 +92,8 @@ class Tasks {
     const sql = "UPDATE Tasks SET ? WHERE user=?";
 
     connection.query(sql, [values, id], (err, results) => {
-      if (err) {
-        res.status(404).json(err);
+      if (results.affectedRows == 0 && err === null) {
+        res.status(404).json('User not found');
       } else {
         res.status(201).json({ ...values, id });
       }
@@ -110,8 +110,8 @@ class Tasks {
     const sql = "UPDATE Tasks SET ? WHERE user= ? ";
 
     connection.query(sql, [values, id], (err, results) => {
-      if (err) {
-        res.status(404).json(err);
+      if (results.affectedRows == 0 && err === null) {
+        res.status(404).json('User not found');
       } else {
         res.status(200).json({ ...values, id });
       }
@@ -123,12 +123,11 @@ class Tasks {
     const sql = "DELETE FROM Tasks WHERE user=?";
 
     connection.query(sql, id, (err, results) => {
-      if (err) {
-        res.status(404).json(err);
+
+      if (results.affectedRows == 0 && err === null) {
+        res.status(404).json('User not found');
       } else {
-        res
-          .status(200)
-          .json(`The task with id: ${id} has been deleted successfully`);
+        res.status(200).json(`The task with id: ${id} has been deleted successfully`);
       }
     });
   }

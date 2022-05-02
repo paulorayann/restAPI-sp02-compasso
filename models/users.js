@@ -128,8 +128,8 @@ class Users {
     const sql = "UPDATE Users SET ? WHERE id=?";
 
     connection.query(sql, [values, id], (err, results) => {
-      if (err) {
-        res.status(404).json(err);
+      if (results.affectedRows == 0 && err === null) {
+        res.status(404).json('User not found');
       } else {
         res.status(201).json({ ...values, id });
       }
@@ -147,7 +147,7 @@ class Users {
     const sql = "UPDATE Users SET ? WHERE id= ? ";
 
     connection.query(sql, [values, id], (err, results) => {
-      if (err) {
+      if (results.affectedRows == 0 && err === null) {
         res.status(400).json(`The user with id: ${id} was not found`);
       } else {
         res.status(200).json({ ...values, id });
@@ -160,8 +160,8 @@ class Users {
     const sql = "DELETE FROM Users WHERE id=?";
 
     connection.query(sql, id, (err, results) => {
-      if (err) {
-        res.status(404).json(err);
+      if (results.affectedRows == 0 && err === null) {
+        res.status(404).json('User not found');
       } else {
         res
           .status(200)
