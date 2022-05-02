@@ -9,7 +9,7 @@ class Users {
     create(users, res) {
         const birthDate = moment(users.birthDate, 'DD/MM/YYYY').format('YYYY-MM-DD')
 
-        const validBirthDate = moment(birthDate).isBefore('2004-01-01')
+        const validBirthDate = moment().diff(birthDate, 'years', true) >= 18
         const validPassword = users.password.length >= 6
         const validEmail =  /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(users.email)
         const validCPF = /^\d{3}\.\d{3}\.\d{3}\-\d{2}$/.test(users.cpf)
@@ -27,7 +27,7 @@ class Users {
             {
                 name: 'birthDate',
                 valid: validBirthDate,
-                message: 'User must have at least 18'
+                message: 'User must have at least 18 years old'
             },
             {
                 name: 'password',
@@ -147,7 +147,7 @@ class Users {
             }
         })
     }
-    
+
     //DELETE Method
     deletes(id, res) {
         const sql = 'DELETE FROM Users WHERE id=?'
