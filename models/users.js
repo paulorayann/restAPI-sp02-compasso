@@ -141,7 +141,7 @@ class Users {
 
         connection.query(sql, [values, id], (err, results) => {
             if(err) {
-                res.status(404).json(err)
+                res.status(400).json(`The user with id: ${id} was not found`)
             } else {
                 res.status(200).json({...values, id}) 
             }
