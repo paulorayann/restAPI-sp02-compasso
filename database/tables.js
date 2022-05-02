@@ -38,10 +38,11 @@ class Tables {
     //Creation of Tasks Table
     createTasks() {
         const sql = `
-        CREATE TABLE IF NOT EXISTS Tasks ( 
+        CREATE TABLE IF NOT EXISTS Tasks (
         description varchar(200) NOT NULL,
         date DATETIME NOT NULL, 
         user int,
+        id int,
         CONSTRAINT fk_UserTask FOREIGN KEY (user) REFERENCES Users (id))
         `
         this.connection.query( sql, err => {
