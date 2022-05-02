@@ -37,6 +37,7 @@ module.exports = app => {
         Users.updatePatch(id, values, res)
     })
 
+    //DELETE Method
     app.delete('/api/v1/user/:id', (req, res) => {
         const id = parseInt(req.params.id)
 

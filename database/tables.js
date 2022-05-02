@@ -6,7 +6,7 @@ class Tables {
         this.createTasks()
     }
 
-    //Creation of Users
+    //Creation of Users Table
     createUser() {
         const sql = ` 
         CREATE TABLE IF NOT EXISTS Users (

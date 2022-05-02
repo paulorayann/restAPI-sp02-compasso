@@ -36,7 +36,8 @@ module.exports = app => {
 
         Tasks.updatePatch(id, values, res)
     })
-
+    
+    //DELETE Method
     app.delete('/api/v1/task/:id', (req, res) => {
         const id = parseInt(req.params.id)
 
