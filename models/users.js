@@ -131,7 +131,7 @@ class Users {
         })
     }
 
-    //PATCH
+    //PATCH 
     updatePatch(id, values, res) {
         if(values.birthDate) {
             values.birthDate = moment(values.birthDate, 'DD/MM/YYYY').format('YYYY-MM-DD')
@@ -147,7 +147,8 @@ class Users {
             }
         })
     }
-
+    
+    //DELETE Method
     deletes(id, res) {
         const sql = 'DELETE FROM Users WHERE id=?'
 

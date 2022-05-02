@@ -121,7 +121,8 @@ class Tasks {
             }
         })
     }
-
+    
+    //DELETE METHOD
     deletes(id, res) {
         const sql = 'DELETE FROM Tasks WHERE user=?'
 
