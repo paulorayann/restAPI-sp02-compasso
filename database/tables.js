@@ -42,7 +42,6 @@ class Tables {
         description varchar(200) NOT NULL,
         date DATETIME NOT NULL, 
         user int,
-        id int,
         CONSTRAINT fk_UserTask FOREIGN KEY (user) REFERENCES Users (id))
         `
         this.connection.query( sql, err => {

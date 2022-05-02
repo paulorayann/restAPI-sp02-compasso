@@ -55,7 +55,7 @@ class Tasks {
 
     //Read Method
     read(res) {
-        const sql = 'SELECT * FROM Tasks;'
+        const sql = 'SELECT tasks.*, users.id FROM tasks JOIN users on tasks.user = users.id'
     
     
 
@@ -73,7 +73,8 @@ class Tasks {
 
     //Read by Id Method
     readById(id, res) {
-        const sql = `SELECT * FROM Tasks WHERE user=${id}`
+        const sql = `SELECT tasks.*, users.id FROM tasks JOIN users on tasks.user = users.id WHERE user=${id}`
+        
     
         connection.query(sql, (err, results) => {
             const tasks = results[0]
@@ -82,7 +83,6 @@ class Tasks {
             } else {
                 res.status(200).json(tasks)
             }
-
         })
     //End of Read by ID Method
     }
